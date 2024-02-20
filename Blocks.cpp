@@ -1,7 +1,7 @@
 #include "Blocks.h"
 #include <SFML/Graphics/RectangleShape.hpp>
 
-Blocks::Blocks(float x, float y, float width, float height, Color color, bool is_especial){
+Blocks::Blocks(float x, float y, float width, float height, Color color, bool is_especial, bool is_especial_n){
 	
 	
 	b_shape.setSize(Vector2f(width,height));
@@ -10,6 +10,7 @@ Blocks::Blocks(float x, float y, float width, float height, Color color, bool is
 	b_shape.setOutlineThickness(1.f);
 	b_shape.setOutlineColor(sf::Color::White);
 	es_especial = is_especial;
+	es_especial_nivel = is_especial_n;
 }
 
 

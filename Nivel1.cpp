@@ -15,10 +15,10 @@ Nivel1::Nivel1() {
 			float x = (j + 0.5f * i) * (blockWidth + 6.f) + 5.f;
 			float y = i * (blockHeight + 6.f) + 5.f;
 			
-			bool isSpecial = (rand () % 20 == 0); /// Probabilidad de 1 / 20 de ser especial el bloque
+			bool isSpecial = (rand () % 30 == 0); /// Probabilidad de 1 / 30 de ser especial el bloque
 			
 			if(isSpecial){
-				m_blocks.emplace_back(x,y,blockWidth,blockHeight,Color::Yellow,true);
+				m_blocks.emplace_back(x,y,blockWidth,blockHeight,Color::Yellow,false,true);
 			}else{
 				m_blocks.emplace_back(x, y, blockWidth, blockHeight, Color::Red);
 			}
@@ -48,8 +48,8 @@ void Nivel1::Update(Game &g){
 	
 	for (auto it = m_blocks.begin(); it != m_blocks.end(); ){
 		if (m_ball.Colisiona(*it)) {
-				if (it->isSpecialBlock()) {		/// Si colisiona con bloque especial pasa esto.. {
-					m_stats.aumentarpuntaje(50);
+				if (it->isSpecialNivel()) {		/// Si colisiona con bloque especial pasa esto.. {
+					g.SetScene(new Nivel2());
 					m_stats.IncrementarVidas();
 				} 	
 				else { 							/// Si no es especial el bloque pasa esto..
@@ -61,6 +61,9 @@ void Nivel1::Update(Game &g){
 			++it; /// Avanza al siguiente bloque si no hay colisión
 		}
 	}
+	
+	
+	
 	if(m_blocks.empty()){
 		g.SetScene(new Nivel2());
 	}
