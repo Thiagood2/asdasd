@@ -22,8 +22,7 @@ public:
 	void decrementar_vidas(int m_v);
 	bool draw_text(bool dr);
 	int VerVidas();
-	void CargarVidas(int vidas);
-	
+	void IncrementarVidas ();
 	void CargarStats(int vidas, int puntaje, int nivel);
 	void GuardarScore(int puntos);
 	

@@ -11,12 +11,17 @@ Nivel6::Nivel6() {
 	m_stats.IncrementarNivel();
 	
 	
+	///Bordes en negrita
 	for (int i = 0; i < rowCount; ++i) {
 		for (int j = 0; j < columnCount; ++j) {
-			if ((i + j) % 2 == 0) { // customizalo ANDY A TU GUSTO
+			if (i == 0 || j == 0 || i == rowCount - 1 || j == columnCount - 1) { 
 				float x = j * (blockWidth + 6.f) + 5.f;
 				float y = i * (blockHeight + 6.f) + 5.f;
-				m_blocks.emplace_back(x, y, blockWidth, blockHeight, Color::White);
+				m_blocks.emplace_back(x, y, blockWidth, blockHeight, Color::Black);
+			} else {
+				float x = j * (blockWidth + 6.f) + 5.f;
+				float y = i * (blockHeight + 6.f) + 5.f;
+				m_blocks.emplace_back(x, y, blockWidth, blockHeight, Color::Magenta);
 			}
 		}
 	}

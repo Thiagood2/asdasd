@@ -96,8 +96,8 @@ int Stats::VerVidas(){
 	return m_vidas;
 }
 
-void Stats::CargarVidas(int vidas){
-	m_vidas = vidas;
+void Stats::IncrementarVidas(){
+	m_vidas++;
 }
 
 void Stats::GuardarScore(int puntos){
