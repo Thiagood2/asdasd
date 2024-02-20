@@ -16,6 +16,7 @@ Nivel1::Nivel1() {
 			float y = i * (blockHeight + 6.f) + 5.f;
 			
 			bool isSpecial = (rand () % 20 == 0); /// Probabilidad de 1 / 20 de ser especial el bloque
+			
 			if(isSpecial){
 				m_blocks.emplace_back(x,y,blockWidth,blockHeight,Color::Yellow,true);
 			}else{
@@ -45,21 +46,21 @@ void Nivel1::Update(Game &g){
 	
 	
 	
-	for (auto it = m_blocks.begin(); it != m_blocks.end(); ) {
+	for (auto it = m_blocks.begin(); it != m_blocks.end(); ){
 		if (m_ball.Colisiona(*it)) {
-			if (it->isSpecialBlock()) /// Si colisiona con bloque especial pasa esto.. {
-				m_stats.aumentarpuntaje(50);
-				m_stats.IncrementarVidas();
-			} else { /// Si no es especial el bloque pasa esto..
-				m_stats.aumentarpuntaje(25);
-			}
-			m_ball.Rebotar();
-			it = m_blocks.erase(it); /// Avanza el iterador después de eliminar el bloque
+				if (it->isSpecialBlock()) {		/// Si colisiona con bloque especial pasa esto.. {
+					m_stats.aumentarpuntaje(50);
+					m_stats.IncrementarVidas();
+				} 	
+				else { 							/// Si no es especial el bloque pasa esto..
+					m_stats.aumentarpuntaje(25);
+				}
+				m_ball.Rebotar();
+				it = m_blocks.erase(it); /// Avanza el iterador después de eliminar el bloque
 		} else {
 			++it; /// Avanza al siguiente bloque si no hay colisión
 		}
 	}
-	
 	if(m_blocks.empty()){
 		g.SetScene(new Nivel2());
 	}
